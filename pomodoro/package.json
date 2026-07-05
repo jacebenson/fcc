@@ -1,0 +1,22 @@
+{
+  "name": "fcc08pomodoro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/browser-sync start --server \"./public\" --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/jacebenson/fcc-pomodoro.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/jacebenson/fcc-pomodoro/issues"
+  },
+  "homepage": "https://gitlab.com/jacebenson/fcc-pomodoro#README",
+  "devDependencies": {
+    "browser-sync": "^2.27.10"
+  }
+}

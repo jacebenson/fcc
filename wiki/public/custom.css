@@ -1,0 +1,27 @@
+body {
+  background-size: 100%;
+  background-image: url(https://images.unsplash.com/photo-1431608660976-4fe5bcc2112c?crop=entropy&fit=crop&fm=jpg&h=675&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=775);
+}
+.container{
+  width:80%;
+  min-height:60px;
+  margin-top:50px;
+  background-color:whitesmoke;
+}
+
+.result {    
+  margin: 10px 10px 10px 0px;
+  background-color: whitesmoke;
+}
+
+.title {
+  font-size: 20px;
+}
+
+.snippet {
+  font-size: 10px;
+}
+span.searchmatch {
+    color: maroon;
+    font-weight: bold;
+}

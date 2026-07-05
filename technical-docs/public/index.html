@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Technical Documentation</title>
+  <!--<link rel="stylesheet" href="/css/main.css"-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!--Page specific-->
+  <link media="screen,print" rel="stylesheet" href="./custom.css">
+  <script src="./custom.js" type="text/javascript"></script>
+  <script async="" src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</head>
+
+<body>
+
+  <nav id="navbar">
+    <header>GlideAjax</header>
+    <ul>
+      <a class="nav-link" href="#Introduction" rel="internal">
+        <li>Introduction</li>
+      </a>
+      <a class="nav-link" href="#Quick_Start" rel="internal">
+        <li>Quick Start</li>
+      </a>
+      <a class="nav-link" href="#addParam" rel="internal">
+        <li>addParam</li>
+      </a>
+      <a class="nav-link" href="#getXML" rel="internal">
+        <li>getXML</li>
+      </a>
+      <a class="nav-link" href="#getXMLAnswer" rel="internal">
+        <li>getXMLAnswer</li>
+      </a>
+      <a class="nav-link" href="#getXMLWait" rel="internal">
+        <li>getXMLWait</li>
+      </a>
+      <a class="nav-link" href="#Reference" rel="internal">
+        <li>Reference</li>
+      </a>
+    </ul>
+  </nav>
+  <main id="main-doc">
+    <section class="main-section" id="Introduction">
+      <header>Introduction</header>
+      <article>
+        <p>
+          GlideAjax is a class used in the ServiceNow Platform to allow client side javascript access to server side
+          functions, classes, and methods.
+        </p>
+        <p>
+          GlideAjax seems more verbose then <a href="https://blog.jace.pro/gliderecord">GlideRecord</a> but it is a also a much better use of network
+          traffic. GlideRecord pulls all the things related to a single or multiple records. GlideAjax only returns
+          what you define.</p>
+      </artice>
+    </section>
+    <section class="main-section" id="Quick_Start">
+      <header>Quick Start</header>
+      <article>
+        <p>
+          Because most avoid GlideAjax calls I always refer to an <a href="https://blog.jace.pro/glideajax/">example</a>
+          I wrote to define the server side code and I'll share a cut down version of that here;
+        </p>
+        <code>// Script Include
+var SomeUtil = Class.create();
+  SomeUtil.prototype = Object.extendsObject(AbstractAjaxProcessor, {
+      // Do not use an initialize method here
+      awesomeFunction: function(){
+          var inputObj = JSON.parse(this.getParameter('sysparm_obj'));
+          var returnObj = {
+              from:"server",
+              input: inputObj
+          };
+          return JSON.stringify(returnObj);
+      },
+      type: 'SomeUtil'
+  });</code>
+        
+        <p>
+          Once this is defined you can call it from any page where GlideAjax is defined with code like this;
+        </p>
+        <code>// Client Side Code
+var ga = new GlideAjax('global.SomeUtil');
+ga.addParam('sysparm_name', 'awesomeFunction');
+ga.addParam('sysparm_obj', JSON.stringify({"hoo":"raa"}));
+ga.getXML(function(response){
+    var responseDocument = response.responseXML.documentElement;
+    var answer = responseDocument.getAttribute('answer');
+    var serverObj = JSON.parse(answer);
+    console.log(serverObj);
+});</code>
+        <p>Below I'll go over each of this classes methods.</p>
+      </article>
+    </section>
+    <section class="main-section" id="addParam">
+      <header>addParam</header>
+      <article>
+        <p>
+            Specifies a parameter name and value to be passed to the server-side function associated with this GlideAjax object. 
+        </p>
+        <p>
+            The first call to addParam should be with the parameter sysparm_name and the name of the server-side method you want to call. The server-side code does not execute until the client script calls getXML().
+        </p>
+        <code>// ...
+ga.addParam('sysparm_name', 'awesomeFunction');
+ga.addParam('sysparm_color', 'red');</code>
+      </article>
+    </section>
+    <section class="main-section" id="getXML">
+      <header>getXML</header>
+      <p>
+        Sends the server a request to execute the method and parameters associated with this GlideAjax object.
+      </p>
+      <p>
+        The server processes the request asynchronously and -- when ready -- returns the results via the function specified as the callback_function.
+      </p>
+      <code>// as a nested function
+        ga.getXML(function(response){
+          var responseDocument = response.responseXML.documentElement;
+          var answer = responseDocument.getAttribute('answer');
+          var serverObj = JSON.parse(answer);
+          console.log(serverObj);
+        });
+
+        // as a declared function
+        function handleResponse(response){
+            var responseDocument = response.responseXML.documentElement;
+            var answer = responseDocument.getAttribute('answer');
+            var serverObj = JSON.parse(answer);
+            console.log(serverObj);
+        }
+        ga.getXML(handleResponse);
+      </code>
+    </section>
+    <section class="main-section" id="getXMLAnswer">
+      <header>getXMLAnswer</header>
+      <article>
+        <p>
+          Call the processor asynchronously and get the answer element of the response in XML format.
+        </p>
+        <p>
+          This is just shorthand for getXML.
+        </p>
+        <code>// as a nested function
+ga.getXMLAnswer(function(response){
+  var serverObj = JSON.parse(response);
+  console.log(serverObj);
+});</code>
+      </article>
+    </section>
+    <section class="main-section" id="getXMLWait">
+      <header>getXMLWait</header>
+      <article>
+        <p>
+          This method can still be used in Servicenow but only in UI16.  As it's not recommeneded to block the
+          execution of code, please avoid using this.  Also this won't work on mobile, service portal or scoped applications.
+        </p>
+        <p>
+          Sends the server a request to execute the method and parameters associated with this GlideAjax object.
+        </p>
+        <p>
+          The server processes the request synchronously and will not process further requests from the client until finished. To retrieve the results, the client must call getAnswer(). Using getXMLWait() ensures the order of execution, but can cause the application to seem unresponsive, significantly degrading the user experience of any application that uses it. We recommend using getXML() instead. 
+        </p>
+        <code>var ga = new GlideAjax('HelloWorld');
+ga.addParam('sysparm_name','helloWorld');
+ga.addParam('sysparm_user_name',"Bob");
+ga.getXMLWait();
+alert(ga.getAnswer());</code>
+      </article>
+    </section>
+    <section class="main-section" id="Reference">
+      <header>Reference</header>
+      <article>
+        <p>
+          All the documentation in this page is taken from the following sources;
+        </p>
+        <ul>
+            <li> 
+                <a href="https://docs.servicenow.com/bundle/jakarta-application-development/page/app-store/dev_portal/API_reference/GlideAjax/concept/c_GlideAjaxAPI.html#r_GLAX-GlideAjax_S" target="_blank">ServiceNow</a>
+            </li>
+            <li> 
+                <a href="https://blog.jace.pro/glideajax" target="_blank">My Blog</a>
+            </li>
+            <li>
+              <a href="https://codecreative.io/blog/glideajax-troubleshooting-guide/" target="_blank">GlideAjax Troubleshooting Guide</a>
+            </li>
+            <li>
+              <a href="https://snprotips.com/blog/2016/2/6/gliderecord-client-side-vs-server-side" target="_blank">GlideRecord & GlideAjax: Client-Side Vs. Server-Side</a>
+            </li>
+            <li>
+              <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Synchronous_and_Asynchronous_Requests" target="_blank">
+                Synchronous and asynchronous requests
+              </a>
+            </li>
+        </ul>
+        
+      </article>
+    </section>
+  </main>
+</body>
+<!--
+    User Story #1: 
+      I can see a main element with a corresponding id="main-doc", 
+      which contains the page's main content (technical documentation).
+    User Story #2: 
+      Within the #main-doc element, I can see several section elements, 
+      each with a class of main-section. There should be a minimum of 5.
+    User Story #3: 
+      The first element within each .main-section should be a header element which contains text that describes the topic of that section.
+    User Story #4: 
+      Each section element with the class of main-section should also have an id that corresponds with the text of each header contained within it. Any spaces should be replaced with underscores (e.g. The section that contains the header "Javascript and Java" should have a corresponding id="Javascript_and_Java").
+    User Story #5: 
+      The .main-section elements should contain at least 10 p elements total (not each).
+    User Story #6: 
+      The .main-section elements should contain at least 5 code elements total (not each).
+    User Story #7: 
+      The .main-section elements should contain at least 5 li items total (not each).
+    User Story #8: 
+      I can see a nav element with a corresponding id="navbar".
+    User Story #9: 
+      The navbar element should contain one header element which contains text that describes the topic of the technical documentation.
+    User Story #10: 
+      Additionally, the navbar should contain link (a) elements with the class of nav-link. There should be one for every element with the class main-section.
+    User Story #11: 
+      The header element in the navbar must come before any link (a) elements in the navbar.
+    User Story #12: 
+      Each element with the class of nav-link should contain text that corresponds to the header text within each section (e.g. if you have a "Hello world" section/header, your navbar should have an element which contains the text "Hello world").
+    User Story #13: 
+      When I click on a navbar element, the page should navigate to the corresponding section of the main-doc element (e.g. If I click on a nav-link element that contains the text "Hello world", the page navigates to a section element that has that id and contains the corresponding header.
+    User Story #14: 
+      On regular sized devices (laptops, desktops), the element with id="navbar" should be shown on the left side of the screen and should always be visible to the user.
+    User Story #15: 
+      My Technical Documentation page should use at least one media query.
+-->
+
+</html>

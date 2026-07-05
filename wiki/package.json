@@ -1,0 +1,22 @@
+{
+  "name": "fcc05wiki",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "light-server -s public/ -w 'public/**'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jacebenson/fcc-wiki.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacebenson/fcc-wiki/issues"
+  },
+  "homepage": "https://github.com/jacebenson/fcc-wiki#README",
+  "devDependencies": {
+    "light-server": "^2.6.2"
+  }
+}

@@ -1,0 +1,11 @@
+body {
+  background-size: 100%;
+  background-image: url(https://images.unsplash.com/photo-1472289065668-ce650ac443d2?dpr=1&auto=format&crop=entropy&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb);
+}
+.row {
+    padding: 5px;
+}
+
+label {
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}

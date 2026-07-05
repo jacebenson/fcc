@@ -1,0 +1,65 @@
+body {
+    background-size: 100%;
+    background-image: url(https://images.unsplash.com/photo-1420161900862-9a86fa1f5c79?crop=entropy&fit=crop&fm=jpg&h=475&ixjsv=2.1.0&ixlib=rb-0.3.5&q=80&w=1325);
+}
+.fixed {
+    width: 400px;
+    border-radius: 20px 20px 20px 20px;
+    background: rgba(200, 200, 200, 0.75);
+    /* width: 75%; */
+    margin-top: 50px;
+    padding-bottom: 20px;
+}
+#display {
+    font-family: digital;
+    background-color: gray;
+    font-size: 30px;
+    text-align: right;
+}
+.row {
+    margin-left:5px;
+    margin-right:5px;
+}
+audio {
+    display: none;
+}
+/*
+.button {
+    margin: 5px;
+    padding: 10px;
+    font-size: 15px;
+    font-family: monospace;
+    text-align: center;
+    height: 40px;
+    width: 38px;
+}
+
+.btn {
+    border: 0;
+    border-bottom: 0;
+    border-left: 0;
+    box-shadow: inset 0 -3.2px rgba(0, 0, 0, 0.12), inset 2px 0 rgba(0, 0, 0, 0.1);
+    outline: none;
+    -webkit-outline: none;
+    -o-outline: none;
+    -moz-outline: none;
+}
+.btn:active, .btn.active {
+    outline: none;
+    -moz-outline: none;
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    position: relative;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125) !important;
+    top: 1px;
+    left: -1px;
+}
+.btn:focus {
+    outline: none;
+    -webkit-outline: none;
+    -moz-outline: none;
+}
+.btn-sm {
+    padding-top: 1.5px;
+}
+*/

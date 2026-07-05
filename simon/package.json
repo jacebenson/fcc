@@ -1,0 +1,22 @@
+{
+  "name": "fcc10simon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "light-server -s public/ -w 'public/**'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jacebenson/fcc-simon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jacebenson/fcc-simon/issues"
+  },
+  "homepage": "https://github.com/jacebenson/fcc-simon#README",
+  "devDependencies": {
+    "light-server": "^2.6.2"
+  }
+}

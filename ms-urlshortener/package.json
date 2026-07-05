@@ -1,0 +1,29 @@
+{
+  "name": "url-shortener-api",
+  "version": "1.0.0",
+  "description": "An API to shorten and return urls",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "valid-url": "1.0.9",
+    "mongodb": "2.2.21",
+    "express": "4.14.0",
+    "body-parser": "1.16.0",
+    "apidoc": "0.17.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heroku/node-js-getting-started"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "mongodb"
+  ],
+  "license": "MIT"
+}

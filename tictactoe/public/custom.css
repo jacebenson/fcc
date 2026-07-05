@@ -1,0 +1,62 @@
+body {
+    background-size: 100%;
+    background-image: url(https://images.unsplash.com/photo-1453342664588-b702c83fc822?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=a560f94716cfdc4139963f4a04a38b5f);
+}
+
+.container {
+    text-align: center;
+    border-radius: 40px 40px 40px 40px;
+    background: rgba(200, 200, 200, 0.95);
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.row {
+    text-shadow: 1px 1px 1px #ccc;
+    font-size: 5em;
+}
+.inline {
+    display: inline;
+}
+.choice {
+    display: inline;
+    cursor: pointer;
+}
+.small {
+    font-size: .5em;    
+}
+.medium {
+    font-size: 1.5em;
+}
+.big {
+    font-size: 5em;    
+}
+.top-cell {
+    border-top: 0px;
+    border-bottom: 2px solid black;
+}
+
+.middle-cell {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.bottom-cell {
+    border-bottom: 0px;
+    border-top: 2px solid black;
+}
+
+.left-cell {
+    border-right: 2px solid black;
+    border-left: 0px;
+}
+
+.center-cell {
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+}
+
+.right-cell {
+    border-left: 2px solid black;
+    border-right: 0px;
+}

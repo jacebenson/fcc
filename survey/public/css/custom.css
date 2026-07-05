@@ -1,0 +1,36 @@
+.header {
+    width: 100%
+}
+
+.link {
+    display: inline;
+}
+
+.body {
+    position: absolute;
+}
+
+.image-circle {
+    border-radius: 50%;
+    width: 200px;
+}
+
+#description {
+    padding: 10px;
+    background-color: #606060;
+    color: white;
+    margin-bottom: 10px;
+}
+
+;
+#projects {
+    padding: 30px;
+}
+
+.project {
+    padding-top: 10px;
+}
+
+.project img {
+    width: 400px;
+}

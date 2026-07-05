@@ -1,0 +1,14 @@
+{
+  "name": "fcc02portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "light-server -s public/ -w 'public/**'"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "light-server": "^2.6.2"
+  }
+}
