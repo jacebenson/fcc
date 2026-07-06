@@ -1,7 +1,7 @@
 FROM node:18-alpine
 
-# Install build tools for better-sqlite3
-RUN apk add --no-cache python3 make g++
+# Install build tools for better-sqlite3 and wget for healthcheck
+RUN apk add --no-cache python3 make g++ wget
 
 WORKDIR /app
 
