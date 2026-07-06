@@ -1,0 +1,21 @@
+[
+  {"name": "Calculator", "slug": "calc", "description": "JavaScript calculator", "type": "React"},
+  {"name": "Drum Machine", "slug": "drum", "description": "Drum pad keyboard", "type": "React"},
+  {"name": "Dungeon Crawler", "slug": "dungeon", "description": "Roguelike dungeon game", "type": "React"},
+  {"name": "Camper Leaderboard", "slug": "leaderboard", "description": "FCC user leaderboard", "type": "React"},
+  {"name": "Game of Life", "slug": "life", "description": "Conway's Game of Life", "type": "React"},
+  {"name": "Markdown Previewer", "slug": "md", "description": "Live markdown preview", "type": "React"},
+  {"name": "Pomodoro Clock", "slug": "pomodoro", "description": "Pomodoro timer", "type": "React"},
+  {"name": "Portfolio", "slug": "portfolio", "description": "Personal portfolio page", "type": "HTML/CSS"},
+  {"name": "Product Landing", "slug": "product", "description": "Product landing page", "type": "HTML/CSS"},
+  {"name": "Random Quotes", "slug": "quotes", "description": "Random quote generator", "type": "React"},
+  {"name": "Recipe Box", "slug": "recipe", "description": "Recipe storage app", "type": "React"},
+  {"name": "Simon Game", "slug": "simon", "description": "Memory pattern game", "type": "React"},
+  {"name": "Survey Form", "slug": "survey", "description": "Form validation demo", "type": "HTML/CSS"},
+  {"name": "Technical Docs", "slug": "technical-docs", "description": "Documentation template", "type": "HTML/CSS"},
+  {"name": "Tic Tac Toe", "slug": "tictactoe", "description": "Unbeatable AI game", "type": "React"},
+  {"name": "Tribute Page", "slug": "tribute", "description": "Tribute page template", "type": "HTML/CSS"},
+  {"name": "Twitch Streamers", "slug": "twitch", "description": "Twitch status viewer", "type": "React"},
+  {"name": "Weather App", "slug": "weather", "description": "Local weather display", "type": "Vite"},
+  {"name": "Wikipedia Viewer", "slug": "wiki", "description": "Wikipedia search", "type": "React"}
+]
