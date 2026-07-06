@@ -3,10 +3,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: fcc-consolidated
     restart: unless-stopped
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     environment:
       - PORT=3000
       - NODE_ENV=production
@@ -21,12 +20,6 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
-    labels:
-      # Traefik service definition
-      - "traefik.http.services.fcc-dashboard.loadbalancer.server.port=3000"
-      # Point Coolify's generated routers to our service
-      - "traefik.http.routers.http-0-ndrq57zr9bm0s609k9u5yy3f-fcc-dashboard.service=fcc-dashboard"
-      - "traefik.http.routers.https-0-ndrq57zr9bm0s609k9u5yy3f-fcc-dashboard.service=fcc-dashboard"
 
 volumes:
   fcc-data:
