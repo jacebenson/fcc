@@ -5,44 +5,23 @@ services:
       dockerfile: Dockerfile
     container_name: fcc-consolidated
     restart: unless-stopped
-    expose:
-      - "3000"
+    ports:
+      - "3000:3000"
     environment:
       - PORT=3000
       - NODE_ENV=production
-      # Required for image search API (Imgur)
       - IMGUR_CLIENT_ID=${IMGUR_CLIENT_ID}
-      # Base URL for short links (must end with trailing slash)
       - BASE_URL=${BASE_URL:-https://fcc.jace.pro/api/urlshortener/}
-      # SQLite database path (persisted in volume)
       - SQLITE_PATH=/app/data/fcc.db
     volumes:
       - fcc-data:/app/data
-    networks:
-      - coolify
     healthcheck:
-      test:
-        - CMD
-        - wget
-        - '--no-verbose'
-        - '--tries=1'
-        - '--spider'
-        - 'http://localhost:3000/health'
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
-    labels:
-      # Traefik service port - REQUIRED for routing
-      - "traefik.http.services.fcc-dashboard.loadbalancer.server.port=3000"
-      # Also set the router service name to match
-      - "traefik.http.routers.http-0-fcc-dashboard.service=fcc-dashboard"
-      - "traefik.http.routers.https-0-fcc-dashboard.service=fcc-dashboard"
 
 volumes:
   fcc-data:
     driver: local
-
-networks:
-  coolify:
-    external: true
