@@ -5,21 +5,21 @@ services:
       dockerfile: Dockerfile
     container_name: fcc-consolidated
     restart: unless-stopped
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     environment:
       - PORT=3000
       - NODE_ENV=production
       # Required for image search API (Imgur)
       - IMGUR_CLIENT_ID=${IMGUR_CLIENT_ID}
       # Base URL for short links (must end with trailing slash)
-      - BASE_URL=${BASE_URL:-https://fcc.yourdomain.com/api/urlshortener/}
+      - BASE_URL=${BASE_URL:-https://fcc.jace.pro/api/urlshortener/}
       # SQLite database path (persisted in volume)
       - SQLITE_PATH=/app/data/fcc.db
     volumes:
       - fcc-data:/app/data
     networks:
-      - fcc-network
+      - coolify
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health"]
       interval: 30s
@@ -32,5 +32,5 @@ volumes:
     driver: local
 
 networks:
-  fcc-network:
-    driver: bridge
+  coolify:
+    external: true
