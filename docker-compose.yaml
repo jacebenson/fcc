@@ -21,6 +21,9 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    labels:
+      # Traefik service definition - tells proxy which port to use
+      - "traefik.http.services.fcc-dashboard.loadbalancer.server.port=3000"
 
 volumes:
   fcc-data:
